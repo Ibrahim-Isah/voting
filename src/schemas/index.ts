@@ -1,5 +1,11 @@
 import * as z from "zod";
 
+export const VoteSchema = z.object({
+  title: z.string().min(1).max(100),
+  description: z.string().min(1).max(1000),
+  options: z.string().min(2).max(10),
+});
+
 export const LoginSchema = z.object({
   email: z.string().email({
     message: "Email is required",

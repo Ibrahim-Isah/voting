@@ -121,7 +121,7 @@ export const LoginForm = () => {
             variant={"default"}
             disabled={isPending}
             type="submit"
-            className="w-full rounded bg-black text-white"
+            className="w-full rounded bg-black text-white hover:bg-black"
           >
             Login
           </Button>
