@@ -6,24 +6,8 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
-    // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading:
-    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+    provider = "cockroachdb"
     url      = env("DATABASE_URL")
-}
-
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
 }
 
 // Necessary for Next auth
@@ -54,20 +38,28 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
+    id       String    @id @default(cuid())
+    name     String?
+    email    String?   @unique
+    password String?
+    accounts Account[]
+    sessions Session[]
+    Vote     Vote[]
 }
 
-model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
+model Vote {
+    id         String   @id @default(cuid())
+    option     String
+    count      Int
+    electionId String
+    userId     String
+    election   Election @relation(fields: [electionId], references: [id])
+    user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
-    @@unique([identifier, token])
+model Election {
+    id      String   @id @default(cuid())
+    title   String
+    options String[]
+    votes   Vote[]
 }
