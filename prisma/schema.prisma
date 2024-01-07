@@ -58,8 +58,9 @@ model Vote {
 }
 
 model Election {
-    id      String   @id @default(cuid())
-    title   String
-    options String[]
-    votes   Vote[]
+    id          String   @id @default(cuid())
+    title       String
+    description String
+    options     String[]
+    votes       Vote[]
 }
