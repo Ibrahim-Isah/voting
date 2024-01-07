@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -5,6 +7,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const mockData = [
@@ -53,6 +56,7 @@ const mockData = [
 ];
 
 const Voting = () => {
+  const router = useRouter();
   return (
     <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       {mockData.map((item) => (
@@ -65,6 +69,7 @@ const Voting = () => {
             <Button
               variant={"default"}
               className="rounded bg-black text-white hover:bg-gray-700"
+              onClick={() => router.push(`/voting/${item.id}`)}
             >
               Enter Voting
             </Button>
