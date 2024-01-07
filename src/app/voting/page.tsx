@@ -7,53 +7,9 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { mockData } from "@/lib/mock";
 import { useRouter } from "next/navigation";
 import React from "react";
-
-const mockData = [
-  {
-    id: 1,
-    title: "First Election",
-    description: "This is the first election",
-    options: ["Mike", "John", "Jane"],
-    votes: [1, 2, 3],
-  },
-  {
-    id: 9,
-    title: "First Election",
-    description: "This is the first election",
-    options: ["Mike", "John", "Jane"],
-    votes: [1, 2, 3],
-  },
-  {
-    id: 7,
-    title: "First Election",
-    description: "This is the first election",
-    options: ["Mike", "John", "Jane"],
-    votes: [1, 2, 3],
-  },
-  {
-    id: 2,
-    title: "First Election",
-    description: "This is the first election",
-    options: ["Mike", "John", "Jane"],
-    votes: [1, 2, 3],
-  },
-  {
-    id: 5,
-    title: "First Election",
-    description: "This is the first election",
-    options: ["Mike", "John", "Jane"],
-    votes: [1, 2, 3],
-  },
-  {
-    id: 3,
-    title: "First Election",
-    description: "This is the first election",
-    options: ["Mike", "John", "Jane"],
-    votes: [1, 2, 3],
-  },
-];
 
 const Voting = () => {
   const router = useRouter();

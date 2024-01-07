@@ -4,7 +4,7 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { LoginSchema } from "@/schemas";
@@ -21,9 +21,9 @@ import { CardWrapper } from "@/components/auth/card-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/form-error";
 import { FormSuccess } from "@/components/form-success";
-// import { login } from "@/actions/login";
 
 export const LoginForm = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
@@ -47,21 +47,8 @@ export const LoginForm = () => {
     setSuccess("");
 
     startTransition(() => {
-      //   login(values, callbackUrl)
-      //     .then((data) => {
-      //       if (data?.error) {
-      //         form.reset();
-      //         setError(data.error);
-      //       }
-      //       if (data?.success) {
-      //         form.reset();
-      //         setSuccess(data.success);
-      //       }
-      //       if (data?.twoFactor) {
-      //         setShowTwoFactor(true);
-      //       }
-      //     })
-      //     .catch(() => setError("Something went wrong"));
+      console.log("nothing", values);
+      router.push("/voting");
     });
   };
 
